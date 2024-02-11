@@ -1,5 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
+from database import database
 
+# database.findUser(email)
 router = APIRouter(
     prefix="/items",
     tags=["items"],
@@ -9,3 +11,5 @@ router = APIRouter(
 @router.get("/")
 async def get_items():
     return "hello world"
+
+# @router.get("/{item_id}")
