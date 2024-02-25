@@ -1,13 +1,24 @@
 from fastapi import APIRouter
-from database import database
 from service import authentication
-from models import UserNameEmail
+import urllib.parse
+
+#from service import authentication
+from models import User
 
 # database.findUser(email)
 router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
-@router.get("/signin", response_model=UserNameEmail)
-async def get_items():
-    return {"message": authentication.test()}
+@router.get("/login")
+# will need user email from the params url
+async def get_items(email: str, password: str):
+    print("router",email,password)
+    user = authentication.get_user(email, password)
+    return {"message": "User retrieved successfully!!!", "user": user}
+# creating a user
+@router.post("/create")
+async def create_user(user: User.User):
+    print("router",user)
+    authentication.create_user(user)
+    return {"message": "User created successfully!!!"}

@@ -9,14 +9,5 @@ port = 27017
 client = MongoClient(hostname, port)
 
 db = client["travel-budget"]
-print(collection.name)
-
-
-# def findUser(email):
-#     user = collection.findOne
-#     ({
-#         "email": email
-#     })
-#     return user
 
 print("Database connected successfully!!!")
